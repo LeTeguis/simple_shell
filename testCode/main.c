@@ -16,17 +16,20 @@ int main(int __attribute__((__unused__)) argc, char __attribute__((__unused__)) 
         char str[] = "ls /bin/ls /usr/bin/ls";
         char **result_split = 0;
         unsigned int i = 0;
+	shell_arg *arg;
 
-        result_split = _strtok(str, " ");
+        /* result_split = _strtok(str, " "); */
+	shell_arg = addShellArg(arg, str);
+	shell_arg = addShellArg(arg, 0);
 
         if (result_split == 0)
                 printf("pas de decoupe\n");
         else
         {
-                while (result_split[i])
+                while (i < shell_arg->argc)
                 {
-                        printf("%s > ", result_split[i]);
-			_which(result_split[i]);
+                        printf("%s > ", shell_arg->argv[i]);
+			_which(shell_arg->argv[i]);
                         printf("***************************\n");
                         i++;
                 }
@@ -38,7 +41,8 @@ int main(int __attribute__((__unused__)) argc, char __attribute__((__unused__)) 
 			}
 		}
                 printf("---------------------------------\n");
-                _frees(result_split);
+                /* _frees(result_split); */
+		freeShellArg(arg);
         }
         return (0);
 }

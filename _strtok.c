@@ -136,10 +136,12 @@ char **_strtok(char *str, char *del)
 	while (str[i])
 	{
 		int add = positionadd(str, del, &k, &i);
+		int end = 0;
 
 		if (add >= 0)
 		{
-			char *copy = _strcpy(str, 0, k, i - 1);
+finish:;
+			char *copy = _strcpy(str, 0, k, (end == 0) ? i - 1 : len_str - 1);
 
 			if (copy != 0)
 				result = newadd(result, &nbr, copy);
@@ -147,6 +149,11 @@ char **_strtok(char *str, char *del)
 			{
 				_frees(result);
 				return (0);
+			}
+			if (end == 1)
+			{
+				result = newadd(result, &nbr, 0);
+				return (result);
 			}
 			k = i + add;
 			i = k - 1;
@@ -154,17 +161,8 @@ char **_strtok(char *str, char *del)
 		i++;
 		if (!str[i] && k <= len_str - 1)
 		{
-			char *copy = _strcpy(str, 0, k, len_str - 1);
-
-			if (copy != 0)
-				result = newadd(result, &nbr, copy);
-			if (copy == 0 || result == 0)
-			{
-				_frees(result);
-				return (0);
-			}
-			result = newadd(result, &nbr, 0);
-			return (result);
+			end = 1;
+			goto finish;
 		}
 	}
 	return (result);

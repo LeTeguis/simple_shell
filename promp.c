@@ -31,36 +31,6 @@ int replacec(char *str, const char c1, const char c2)
 	return (0);
 }
 
-char *int_tostring(int value)
-{
-	char *result = 0;
-	int number = (value < 0) ? -value : value;
-	int nbr = (value < 0) ? 2 : 1;
-	int i = 0;
-	
-	while (number > 9)
-	{
-		nbr++;
-		number /= 10;
-	}
-	i = nbr;
-	result = (char *)malloc(sizeof(char) * (nbr + 1));
-
-	if (result == 0)
-		return (0);
-	number = (value < 0) ? -value : value;
-	if (value < 0)
-		result[0] = '-';
-	while (i > 0)
-	{
-		result[i - 1] = '0' + (number % 10);
-		number /= 10;
-		i--;
-	}
-	result[nbr] = '\0';
-	return (result);
-}
-
 /**
  * prompt - begin sheel
  *

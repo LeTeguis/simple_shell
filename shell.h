@@ -61,7 +61,6 @@ int replacec(char *str, const char c1, const char c2);
 int prompt();
 
 /* shell */
-shell_arg* getShellArg(char *lineptr, char *first);
 void freeShellArg(shell_arg *arg);
 shell_arg* addShellArg(shell_arg *arg, char *lineptr);
 char *_which(char *file);
