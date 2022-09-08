@@ -36,6 +36,7 @@ void _freearg(shell_arg *arg);
 shell_arg *_strtok(char *str, char *delim);
 int _nextDelim(char *str, char *del, unsigned int debut);
 char *_extractto(char *str, unsigned int begin, unsigned int taille);
+
 /* input output */
 void _puts(char *str);
 ssize_t _getline(char **linestr, size_t *n);
@@ -49,4 +50,5 @@ void _printError(char *message);
 
 /* execute */
 void _procede(shell_arg *arg);
+
 #endif
