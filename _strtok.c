@@ -20,7 +20,6 @@ int _nextDelim(char *str, char *del, unsigned int debut)
 		return (-1);
 	if (del == 0 || len_del == 0)
 		return (-2);
-
 	while (str[debut + i])
 	{
 		if (del[0] == str[debut + i])
@@ -172,7 +171,6 @@ shell_arg *_strtok(char *str, char *delim)
 		return (0);
 	arg->argc = 0;
 	arg->argv = 0;
-
 	while (next_ >= 0)
 	{
 		next_ = _nextDelim(str, delim, debut);
