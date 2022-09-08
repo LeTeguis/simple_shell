@@ -1,106 +1,44 @@
 #include "shell.h"
 
 /**
- * _strlen - get len
+ * _strlen - get
  *
  * @str: string
  *
- * Description: get the length of str
+ * Description: count
  *
- * Return: lenght
+ * Return: number of char is in str
  */
 
 unsigned int _strlen(char *str)
 {
-	unsigned int i = 0;
-	
-	while (str[i])
-		i++;
-	return (i);
+	unsigned int s = 0;
+
+	while (str[s] || str[s] != '\0')
+		s++;
+	return (s);
 }
 
 /**
- * _strcmp - compare
+ * _strcmp - compare two string
  *
- * @str1: first string
- * @str2: second string
+ * @s1: first string
+ * @s2: second string
  *
- * Description: compare str1 and str2
+ * Description: compare s1 and s2
  *
- * Return: 1 is equal and 0 if not
+ * Return: 1 if s1 > s2, -1 if s1 < s2 or 0 if s1 == s2
  */
 
-int _strcmp(char *str1, char *str2)
+int _strcmp(char *s1, char *s2)
 {
-	unsigned int i = 0;
+	int i = 0;
 
-	if (str1 == 0 && str2 == 0)
-		return (1);
-	if (str1 == 0 || str2 == 0)
-		return (0);
-	while (1)
+	while (s1[i] != '\0' && s2[i] != '\0')
 	{
-		if (str1[i] != str2[i])
-			return (0);
-		if (!str1[i] && str2[i])
-			return (0);
-		if (str1[i] && !str2[i])
-			return (0);
-		if (!str1[i] && !str2[i])
-			return (1);
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
 		i++;
 	}
-}
-
-/**
- * _strcpy - copy
- *
- * @str: source of string
- * @all: copy entirly string if all greater or equal than 0
- * @start: begint copy index
- * @end: end copy index
- *
- * Description: copy str if end < start the copi is inverse
- *
- * Return: destination of copy
- */
-
-char *_strcpy(char *str, int all, unsigned int start, unsigned int end)
-{
-	unsigned int leng = (end < start) ? (start - end + 1) : (end - start + 1);
-	char *result = 0;
-	unsigned int i = 0;
-	unsigned int j = 0;
-	unsigned int len_str = _strlen(str);
-
-	if (str == 0 || start >= len_str || end >= len_str)
-		return (0);
-	if (all < 0)
-	{
-		end = len_str - 1;
-		start = 0;
-		if (end < start)
-		{
-			end = 0;
-			start = len_str - 1;
-		}
-		leng = len_str;
-	}
-	result = (char *)malloc(sizeof(char) * (leng + 1));
-	if (!result)
-		return (0);
-	if (end < start)
-	{
-		for (i = start; i >= end; i--)
-			result[j++] = str[i];
-	}
-	else if (end > start)
-	{
-		for (i = start; i <= end; i++)
-			result[j++] = str[i];
-	}
-	else
-		result[0] = str[start];
-	result[leng] = '\0';
-	return (result);
+	return (s1[i] - s2[i]);
 }
